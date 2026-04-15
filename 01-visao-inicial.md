@@ -113,10 +113,19 @@ Ela não representa uma ação, e também não representa quem está usando o si
 
 No escopo atual, os conceitos de domínio já identificados são:
 
+#### Entidades principais
+
 - Professor
 - Aluno
 - Turma
-- Horário da Turma
+- HorarioTurma
+
+#### Entidades de relacionamento (próximo passo)
+
+- ProfessorAluno
+- TurmaAluno
+
+As entidades de relacionamento existem para representar vínculos do negócio sem acoplar responsabilidades diretamente nas entidades principais.
 
 ---
 
@@ -126,11 +135,10 @@ Essa separação é importante porque cada elemento responde a uma pergunta dife
 
 - ator → quem usa
 - caso de uso → o que pode ser feito
-- entidade → sobre o que o sistema está falando
+- entidade principal → quais objetos existem
+- entidade de relacionamento → como eles se conectam
 
-Quando esses conceitos ficam misturados, o projeto tende a ficar confuso. Rotas, regras, modelagem de dados e arquitetura começam a nascer sem clareza.
-
-Quando eles ficam separados, o sistema evolui com mais consistência.
+Quando esses conceitos ficam misturados, o projeto tende a ficar confuso.
 
 ---
 
@@ -143,31 +151,20 @@ No desenho atual:
 - Registrar e Login aparecem como casos de uso de autenticação do professor
 - Criar Turma, Listar Turmas, Editar Turma e Definir Horários da Turma aparecem como casos de uso do professor autenticado
 - Criar Aluno, Listar Alunos e Editar Aluno aparecem como casos de uso de gestão do professor autenticado
-- Consultar Turmas Disponíveis, Consultar Horários da Turma e Inscrever-se na Turma aparecem como casos de uso do aluno sem necessidade de login próprio
-- Professor, Aluno, Turma e Horário da Turma aparecem como entidades porque são conceitos do domínio do sistema
-- Desativar Turma e Desativar Aluno já foram identificados como necessidades prováveis, mas ainda permanecem como decisões em aberto
-
-Um ponto importante é que “Professor” pode aparecer em dois lugares diferentes sem estar errado:
-
-- como ator, quando estamos olhando para a interação com o sistema
-- como entidade, quando estamos olhando para o domínio do negócio
-
-Essa distinção é normal e importante na modelagem.
+- Consultar Turmas Disponíveis, Consultar Horários da Turma e Inscrever-se na Turma aparecem como casos de uso do aluno
+- Professor, Aluno, Turma e HorarioTurma são entidades principais
+- ProfessorAluno representa o vínculo entre professor e aluno
+- TurmaAluno representa a inscrição do aluno na turma
 
 ---
 
 ## Resultado desta etapa
 
-Ao final desta etapa, o projeto passa a ter uma base conceitual inicial organizada em grupos claros:
+Ao final desta etapa, o projeto passa a ter uma base conceitual organizada em:
 
 - quem interage com o sistema
-- quais ações já foram identificadas
-- quais conceitos fazem parte do domínio
-- quais pontos ainda dependem de definição adicional
+- quais ações existem
+- quais entidades existem
+- como elas se relacionam
 
-Com essa base, as próximas etapas poderão ser tratadas com mais clareza, como:
-
-- regras de negócio
-- fluxos
-- modelagem de dados
-- arquitetura
+Com essa base, as próximas etapas poderão evoluir com mais clareza.
